@@ -32,8 +32,8 @@ export default function LoginForm({ onSuccess, onForgotPassword }) {
 
       const data = await response.json();
 
-      if (!response.ok) {
-        setErrorMsg(data.error || "Credenciales inválidas");
+      if (data.error) {
+        setErrorMsg(data.error);
         return;
       }
 
