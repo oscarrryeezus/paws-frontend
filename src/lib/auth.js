@@ -5,11 +5,6 @@ export async function login(email, password) {
   return res.data;
 }
 
-export function logout() {
-  localStorage.removeItem("token");
-  window.location.href = "/login";
-}
-
 export function getToken() {
   return localStorage.getItem("token");
 }
@@ -21,7 +16,7 @@ export async function verificarEmail(email, codigo) {
 
 export async function logout() {
   try {
-    await api.post("/logout"); 
+    await api.post("/logout/logout"); 
   } catch (error) {
     console.error("Error al cerrar sesión:", error);
   } finally {
@@ -29,4 +24,4 @@ export async function logout() {
     localStorage.removeItem("user");
     window.location.href = "/";
   }
-}
+} 

@@ -26,122 +26,122 @@ export default function DashboardPage() {
   }, [router]);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-sky-100">
       <div className="max-w-7xl mx-auto p-6 space-y-6">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-white">
+          <h1 className="text-3xl font-bold text-gray-900">
             Bienvenido, {user?.nombre || "Usuario"}
           </h1>
-          <p className="text-gray-400 mt-1">
+          <p className="text-gray-600 mt-1">
             Sistema de Gestión de Inventario PAWS
           </p>
         </div>
 
         {/* Quick Stats Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          <Card className="border-gray-700 hover:shadow-lg transition-shadow">
+          <Card className="bg-white border-sky-200 hover:shadow-lg transition-shadow">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-white text-sm font-medium">
+                <CardTitle className="text-gray-900 text-sm font-medium">
                   Total Productos
                 </CardTitle>
-                <Package className="size-5 text-blue-400" />
+                <Package className="size-5 text-sky-500" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-white">-</div>
-              <p className="text-gray-400 text-xs mt-1">Productos activos</p>
+              <div className="text-3xl font-bold text-gray-900">-</div>
+              <p className="text-gray-600 text-xs mt-1">Productos activos</p>
             </CardContent>
           </Card>
 
-          <Card className="border-gray-700 hover:shadow-lg transition-shadow">
+          <Card className="bg-white border-orange-200 hover:shadow-lg transition-shadow">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-white text-sm font-medium">
+                <CardTitle className="text-gray-900 text-sm font-medium">
                   Stock Bajo
                 </CardTitle>
-                <AlertTriangle className="size-5 text-yellow-400" />
+                <AlertTriangle className="size-5 text-orange-500" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-yellow-400">-</div>
-              <p className="text-gray-400 text-xs mt-1">Requieren atención</p>
+              <div className="text-3xl font-bold text-orange-500">-</div>
+              <p className="text-gray-600 text-xs mt-1">Requieren atención</p>
             </CardContent>
           </Card>
 
-          <Card className="border-gray-700 hover:shadow-lg transition-shadow">
+          <Card className="bg-white border-emerald-200 hover:shadow-lg transition-shadow">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-white text-sm font-medium">
+                <CardTitle className="text-gray-900 text-sm font-medium">
                   Movimientos Hoy
                 </CardTitle>
-                <TrendingUp className="size-5 text-green-400" />
+                <TrendingUp className="size-5 text-emerald-500" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-green-400">-</div>
-              <p className="text-gray-400 text-xs mt-1">Entradas/Salidas</p>
+              <div className="text-3xl font-bold text-emerald-500">-</div>
+              <p className="text-gray-600 text-xs mt-1">Entradas/Salidas</p>
             </CardContent>
           </Card>
 
-          <Card className="border-gray-700 hover:shadow-lg transition-shadow">
+          <Card className="bg-white border-purple-200 hover:shadow-lg transition-shadow">
             <CardHeader>
               <div className="flex items-center justify-between">
-                <CardTitle className="text-white text-sm font-medium">
+                <CardTitle className="text-gray-900 text-sm font-medium">
                   Proveedores
                 </CardTitle>
-                <Users className="size-5 text-purple-400" />
+                <Users className="size-5 text-purple-500" />
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-purple-400">-</div>
-              <p className="text-gray-400 text-xs mt-1">Proveedores activos</p>
+              <div className="text-3xl font-bold text-purple-500">-</div>
+              <p className="text-gray-600 text-xs mt-1">Proveedores activos</p>
             </CardContent>
           </Card>
         </div>
 
         {/* Quick Actions */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="border-gray-700">
+          <Card className="bg-white border-sky-200">
             <CardHeader>
-              <CardTitle className="text-white">Acciones Rápidas</CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardTitle className="text-gray-900">Acciones Rápidas</CardTitle>
+              <CardDescription className="text-gray-600">
                 Accede a las funciones principales del sistema
               </CardDescription>
             </CardHeader>
             <CardContent className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <Link href="/productos">
-                <Button className="w-full bg-blue-600 hover:bg-blue-700">
+                <Button className="w-full bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 text-white">
                   <Package className="size-4" />
                   Gestionar Productos
                 </Button>
               </Link>
-              <Button variant="outline" className="w-full" disabled>
+              <Button variant="outline" className="w-full border-gray-300 text-gray-700 hover:bg-gray-50" disabled>
                 <TrendingUp className="size-4" />
                 Ver Movimientos
               </Button>
-              <Button variant="outline" className="w-full" disabled>
+              <Button variant="outline" className="w-full border-gray-300 text-gray-700 hover:bg-gray-50" disabled>
                 <Users className="size-4" />
                 Proveedores
               </Button>
-              <Button variant="outline" className="w-full" disabled>
+              <Button variant="outline" className="w-full border-gray-300 text-gray-700 hover:bg-gray-50" disabled>
                 <AlertTriangle className="size-4" />
                 Alertas
               </Button>
             </CardContent>
           </Card>
 
-          <Card className="border-gray-700">
+          <Card className="bg-white border-sky-200">
             <CardHeader>
-              <CardTitle className="text-white">Actividad Reciente</CardTitle>
-              <CardDescription className="text-gray-400">
+              <CardTitle className="text-gray-900">Actividad Reciente</CardTitle>
+              <CardDescription className="text-gray-600">
                 Últimos movimientos en el sistema
               </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3">
-                <p className="text-gray-400 text-sm text-center py-8">
+                <p className="text-gray-500 text-sm text-center py-8">
                   No hay actividad reciente
                 </p>
               </div>

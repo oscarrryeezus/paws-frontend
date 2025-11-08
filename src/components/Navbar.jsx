@@ -18,15 +18,15 @@ export default function Navbar() {
   }
 
   return (
-    <nav className="bg-gray-900 border-b border-gray-700 shadow-lg">
+    <nav className="bg-white border-b border-sky-200 shadow-md">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo/Brand */}
           <div className="flex items-center gap-2">
-            <div className="bg-blue-600 p-2 rounded-lg">
+            <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2 rounded-lg shadow-md">
               <Package className="size-6 text-white" />
             </div>
-            <span className="text-white font-bold text-xl">PAWS</span>
+            <span className="text-gray-900 font-bold text-xl">PAWS</span>
           </div>
 
           {/* Navigation Links */}
@@ -35,7 +35,7 @@ export default function Navbar() {
               <Button
                 variant={pathname === "/dashboard" ? "default" : "ghost"}
                 size="sm"
-                className={pathname === "/dashboard" ? "bg-blue-600" : "text-gray-300"}
+                className={pathname === "/dashboard" ? "bg-sky-500 hover:bg-sky-600 text-white" : "text-gray-700 hover:text-sky-600 hover:bg-sky-50"}
               >
                 <Home className="size-4" />
                 Dashboard
@@ -46,7 +46,7 @@ export default function Navbar() {
               <Button
                 variant={pathname === "/productos" ? "default" : "ghost"}
                 size="sm"
-                className={pathname === "/productos" ? "bg-blue-600" : "text-gray-300"}
+                className={pathname === "/productos" ? "bg-sky-500 hover:bg-sky-600 text-white" : "text-gray-700 hover:text-sky-600 hover:bg-sky-50"}
               >
                 <Package className="size-4" />
                 Productos
@@ -58,7 +58,7 @@ export default function Navbar() {
               variant="ghost"
               size="sm"
               onClick={handleLogout}
-              className="text-red-400 hover:text-red-300 hover:bg-red-900/20"
+              className="text-red-600 hover:text-red-700 hover:bg-red-50"
             >
               <LogOut className="size-4" />
               Salir

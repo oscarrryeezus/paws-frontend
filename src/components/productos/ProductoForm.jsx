@@ -182,16 +182,16 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
   };
 
   return (
-    <Card className="bg-white/5 backdrop-blur-md border-white/10 shadow-2xl">
+    <Card className="bg-white border-sky-200 shadow-xl">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle className="text-white">
+        <CardTitle className="text-gray-900">
           {producto ? "Editar Producto" : "Nuevo Producto"}
         </CardTitle>
         <Button
           variant="ghost"
           size="icon-sm"
           onClick={onCancel}
-          className="text-slate-400 hover:text-white hover:bg-white/10"
+          className="text-gray-600 hover:text-gray-900 hover:bg-gray-100"
         >
           <X className="size-5" />
         </Button>
@@ -200,7 +200,7 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="space-y-2">
-              <Label htmlFor="str_codigo" className="text-slate-300">
+              <Label htmlFor="str_codigo" className="text-gray-700">
                 Código *
               </Label>
               <Input
@@ -212,12 +212,12 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
                 required
                 disabled={!!producto}
                 placeholder="Ej: MOU123"
-                className={`bg-white/5 text-white placeholder-slate-400 focus:border-yellow-400 focus:ring-yellow-400/20 ${
-                  errores.str_codigo ? 'border-red-500' : 'border-white/10'
+                className={`bg-sky-50 text-gray-900 placeholder-gray-400 focus:border-sky-400 focus:ring-sky-400/20 ${
+                  errores.str_codigo ? 'border-red-400' : 'border-sky-200'
                 }`}
               />
               {errores.str_codigo && (
-                <p className="text-red-400 text-xs mt-1 flex items-center gap-1">
+                <p className="text-red-600 text-xs mt-1 flex items-center gap-1">
                   <AlertCircle className="size-3" />
                   {errores.str_codigo}
                 </p>
@@ -225,7 +225,7 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="str_nombre" className="text-slate-300">
+              <Label htmlFor="str_nombre" className="text-gray-700">
                 Nombre *
               </Label>
               <Input
@@ -236,12 +236,12 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
                 onBlur={handleBlur}
                 required
                 placeholder="Ej: Mouse Gamer RGB"
-                className={`bg-white/5 text-white placeholder-slate-400 focus:border-yellow-400 focus:ring-yellow-400/20 ${
-                  errores.str_nombre ? 'border-red-500' : 'border-white/10'
+                className={`bg-sky-50 text-gray-900 placeholder-gray-400 focus:border-sky-400 focus:ring-sky-400/20 ${
+                  errores.str_nombre ? 'border-red-400' : 'border-sky-200'
                 }`}
               />
               {errores.str_nombre && (
-                <p className="text-red-400 text-xs mt-1 flex items-center gap-1">
+                <p className="text-red-600 text-xs mt-1 flex items-center gap-1">
                   <AlertCircle className="size-3" />
                   {errores.str_nombre}
                 </p>
@@ -249,7 +249,7 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="str_categoria" className="text-slate-300">
+              <Label htmlFor="str_categoria" className="text-gray-700">
                 Categoría *
               </Label>
               <Input
@@ -260,12 +260,12 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
                 onBlur={handleBlur}
                 required
                 placeholder="Ej: Periféricos"
-                className={`bg-white/5 text-white placeholder-slate-400 focus:border-yellow-400 focus:ring-yellow-400/20 ${
-                  errores.str_categoria ? 'border-red-500' : 'border-white/10'
+                className={`bg-sky-50 text-gray-900 placeholder-gray-400 focus:border-sky-400 focus:ring-sky-400/20 ${
+                  errores.str_categoria ? 'border-red-400' : 'border-sky-200'
                 }`}
               />
               {errores.str_categoria && (
-                <p className="text-red-400 text-xs mt-1 flex items-center gap-1">
+                <p className="text-red-600 text-xs mt-1 flex items-center gap-1">
                   <AlertCircle className="size-3" />
                   {errores.str_categoria}
                 </p>
@@ -273,7 +273,7 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="str_unidad" className="text-slate-300">
+              <Label htmlFor="str_unidad" className="text-gray-700">
                 Unidad *
               </Label>
               <Input
@@ -284,12 +284,12 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
                 onBlur={handleBlur}
                 required
                 placeholder="Ej: pieza, caja, kg"
-                className={`bg-white/5 text-white placeholder-slate-400 focus:border-yellow-400 focus:ring-yellow-400/20 ${
-                  errores.str_unidad ? 'border-red-500' : 'border-white/10'
+                className={`bg-sky-50 text-gray-900 placeholder-gray-400 focus:border-sky-400 focus:ring-sky-400/20 ${
+                  errores.str_unidad ? 'border-red-400' : 'border-sky-200'
                 }`}
               />
               {errores.str_unidad && (
-                <p className="text-red-400 text-xs mt-1 flex items-center gap-1">
+                <p className="text-red-600 text-xs mt-1 flex items-center gap-1">
                   <AlertCircle className="size-3" />
                   {errores.str_unidad}
                 </p>
@@ -297,7 +297,7 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="int_stock_minimo" className="text-slate-300">
+              <Label htmlFor="int_stock_minimo" className="text-gray-700">
                 Stock Mínimo *
               </Label>
               <Input
@@ -309,12 +309,12 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required
-                className={`bg-white/5 text-white placeholder-slate-400 focus:border-yellow-400 focus:ring-yellow-400/20 ${
-                  errores.int_stock_minimo ? 'border-red-500' : 'border-white/10'
+                className={`bg-sky-50 text-gray-900 placeholder-gray-400 focus:border-sky-400 focus:ring-sky-400/20 ${
+                  errores.int_stock_minimo ? 'border-red-400' : 'border-sky-200'
                 }`}
               />
               {errores.int_stock_minimo && (
-                <p className="text-red-400 text-xs mt-1 flex items-center gap-1">
+                <p className="text-red-600 text-xs mt-1 flex items-center gap-1">
                   <AlertCircle className="size-3" />
                   {errores.int_stock_minimo}
                 </p>
@@ -322,7 +322,7 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="int_stock_actual" className="text-slate-300">
+              <Label htmlFor="int_stock_actual" className="text-gray-700">
                 Stock Actual *
               </Label>
               <Input
@@ -334,12 +334,12 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
                 onChange={handleChange}
                 onBlur={handleBlur}
                 required
-                className={`bg-white/5 text-white placeholder-slate-400 focus:border-yellow-400 focus:ring-yellow-400/20 ${
-                  errores.int_stock_actual ? 'border-red-500' : 'border-white/10'
+                className={`bg-sky-50 text-gray-900 placeholder-gray-400 focus:border-sky-400 focus:ring-sky-400/20 ${
+                  errores.int_stock_actual ? 'border-red-400' : 'border-sky-200'
                 }`}
               />
               {errores.int_stock_actual && (
-                <p className="text-red-400 text-xs mt-1 flex items-center gap-1">
+                <p className="text-red-600 text-xs mt-1 flex items-center gap-1">
                   <AlertCircle className="size-3" />
                   {errores.int_stock_actual}
                 </p>
@@ -348,7 +348,7 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="str_descripcion" className="text-slate-300">
+            <Label htmlFor="str_descripcion" className="text-gray-700">
               Descripción *
             </Label>
             <textarea
@@ -360,12 +360,12 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
               required
               rows={3}
               placeholder="Descripción detallada del producto..."
-              className={`w-full rounded-md border px-3 py-2 text-sm text-white placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-400/20 bg-white/5 ${
-                errores.str_descripcion ? 'border-red-500' : 'border-white/10'
+              className={`w-full rounded-md border px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/20 bg-sky-50 ${
+                errores.str_descripcion ? 'border-red-400' : 'border-sky-200'
               }`}
             />
             {errores.str_descripcion && (
-              <p className="text-red-400 text-xs mt-1 flex items-center gap-1">
+              <p className="text-red-600 text-xs mt-1 flex items-center gap-1">
                 <AlertCircle className="size-3" />
                 {errores.str_descripcion}
               </p>
@@ -376,7 +376,7 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
             <Button
               type="submit"
               disabled={loading}
-              className="flex-1 bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              className="flex-1 bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
             >
               {loading ? "Guardando..." : producto ? "Actualizar" : "Crear Producto"}
             </Button>
@@ -384,7 +384,7 @@ export default function ProductoForm({ producto, onSubmit, onCancel }) {
               type="button"
               variant="outline"
               onClick={onCancel}
-              className="flex-1 bg-white/5 border-white/10 text-white hover:bg-white/10"
+              className="flex-1 bg-white border-gray-300 text-gray-700 hover:bg-gray-50"
             >
               Cancelar
             </Button>

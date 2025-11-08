@@ -49,63 +49,64 @@ export default function OtpForm({ email, onSuccess, onBack }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full max-w-md"
+      className="w-full max-w-xl"
     >
-      <Card className="bg-white/5 backdrop-blur-md border-white/10 shadow-2xl">
+      <Card className="bg-white border-sky-200 shadow-2xl">
         <CardHeader className="space-y-4 pb-6">
           <button
+            type="button"
             onClick={onBack}
-            className="flex items-center text-slate-400 hover:text-yellow-400 transition-colors duration-200 mb-2 self-start"
+            className="flex items-center text-gray-600 hover:text-sky-600 transition-colors duration-200 mb-2 self-start"
           >
             <ArrowLeft className="h-4 w-4 mr-1" />
             Volver al login
           </button>
           
           <div className="flex justify-center mb-2">
-            <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg">
+            <div className="w-12 h-12 bg-gradient-to-r from-emerald-400 to-green-500 rounded-xl flex items-center justify-center shadow-lg">
               <KeyRound className="h-6 w-6 text-white" />
             </div>
           </div>
-          <CardTitle className="text-center text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-500 bg-clip-text text-transparent">
+          <CardTitle className="text-center text-2xl font-bold bg-gradient-to-r from-emerald-500 to-green-600 bg-clip-text text-transparent">
             Verificación OTP
           </CardTitle>
-          <p className="text-center text-slate-400 text-sm">
+          <p className="text-center text-gray-600 text-sm">
             Ingresa el código OTP enviado a tu correo
           </p>
-          <p className="text-center text-slate-300 text-xs">
-            Enviado a: <span className="text-yellow-400">{email}</span>
+          <p className="text-center text-gray-700 text-xs">
+            Enviado a: <span className="text-sky-600 font-medium">{email}</span>
           </p>
         </CardHeader>
 
         <CardContent className="space-y-6">
           <form onSubmit={handleOtpSubmit} className="space-y-5">
             <div className="space-y-2">
-              <label className="block text-sm font-medium text-slate-300 mb-2">
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Código OTP
               </label>
               <div className="relative">
-                <KeyRound className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 h-4 w-4" />
+                <KeyRound className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
                 <Input
                   type="text"
                   placeholder="Ingresa tu código"
                   value={otp}
                   onChange={(e) => setOtp(e.target.value)}
-                  className="pl-10 bg-white/5 border-slate-600 text-white placeholder-slate-400 focus:border-purple-400 focus:ring-purple-400/20 transition-all duration-200"
+                  className="pl-10 bg-sky-50 border-sky-200 text-gray-900 placeholder-gray-400 focus:border-emerald-400 focus:ring-emerald-400/20 transition-all duration-200"
                   required
                 />
               </div>
             </div>
 
             {errorMsg && (
-              <Alert variant="destructive" className="bg-red-500/10 border-red-500/20 text-red-200">
+              <Alert variant="destructive" className="bg-red-50 border-red-200 text-red-700">
                 <AlertDescription>{errorMsg}</AlertDescription>
               </Alert>
             )}
 
-            <Button
+            <button
               type="submit"
               disabled={loading}
-              className="w-full bg-gradient-to-r from-purple-500 to-purple-600 hover:from-purple-600 hover:to-purple-700 text-white font-semibold py-2.5 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full inline-flex items-center justify-center gap-2 rounded-md bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold py-2.5 px-4 transition-all duration-200 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {loading ? (
                 <>
@@ -115,7 +116,7 @@ export default function OtpForm({ email, onSuccess, onBack }) {
               ) : (
                 "Verificar Código"
               )}
-            </Button>
+            </button>
           </form>
         </CardContent>
       </Card>

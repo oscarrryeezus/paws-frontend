@@ -138,30 +138,30 @@ export default function ProductosPage() {
   const categorias = [...new Set(productos.map((p) => p.str_categoria).filter(Boolean))];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-6 relative">
+    <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-sky-100 p-6 relative">
       {/* Fondos decorativos */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-yellow-500/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl"></div>
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-sky-300/20 rounded-full blur-3xl"></div>
+        <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-emerald-300/20 rounded-full blur-3xl"></div>
       </div>
 
       <div className="max-w-7xl mx-auto space-y-6 relative z-10">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h1 className="text-3xl font-bold bg-gradient-to-r from-yellow-400 to-yellow-500 bg-clip-text text-transparent flex items-center gap-3">
-              <div className="w-10 h-10 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-xl flex items-center justify-center">
-                <Package className="size-6 text-slate-900" />
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-sky-600 to-blue-700 bg-clip-text text-transparent flex items-center gap-3">
+              <div className="w-10 h-10 bg-gradient-to-r from-sky-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md">
+                <Package className="size-6 text-white" />
               </div>
               Gestión de Productos
             </h1>
-            <p className="text-slate-400 mt-2">
+            <p className="text-gray-700 mt-2">
               {productos.length} productos registrados
             </p>
           </div>
           <Button
             onClick={handleNuevoProducto}
-            className="bg-gradient-to-r from-yellow-500 to-yellow-600 hover:from-yellow-600 hover:to-yellow-700 text-slate-900 font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+            className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
             disabled={showForm}
           >
             <Plus className="size-5" />
@@ -171,14 +171,14 @@ export default function ProductosPage() {
 
         {/* Mensajes */}
         {error && (
-          <Alert className="bg-red-900/20 border-red-500/30 text-red-300 backdrop-blur-md">
+          <Alert className="bg-red-50 border-red-200 text-red-700">
             <AlertCircle className="size-4" />
             <span>{error}</span>
           </Alert>
         )}
 
         {success && (
-          <Alert className="bg-green-900/20 border-green-500/30 text-green-300 backdrop-blur-md">
+          <Alert className="bg-emerald-50 border-emerald-200 text-emerald-700">
             <AlertCircle className="size-4" />
             <span>{success}</span>
           </Alert>
@@ -197,20 +197,20 @@ export default function ProductosPage() {
         {!showForm && (
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 size-5 text-slate-400" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 size-5 text-gray-400" />
               <Input
                 type="text"
                 placeholder="Buscar por código, nombre o descripción..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 bg-white/5 border-white/10 text-white placeholder-slate-400 focus:border-yellow-400 focus:ring-yellow-400/20 backdrop-blur-md"
+                className="pl-10 bg-white border-sky-200 text-gray-900 placeholder-gray-400 focus:border-sky-400 focus:ring-sky-400/20"
               />
             </div>
             {categorias.length > 0 && (
               <select
                 value={filterCategoria}
                 onChange={(e) => setFilterCategoria(e.target.value)}
-                className="px-4 py-2 rounded-md border border-white/10 bg-white/5 backdrop-blur-md text-white focus:outline-none focus:ring-2 focus:ring-yellow-400/20 focus:border-yellow-400"
+                className="px-4 py-2 rounded-md border border-sky-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-sky-400/20 focus:border-sky-400"
               >
                 <option value="">Todas las categorías</option>
                 {categorias.map((cat) => (
@@ -228,18 +228,18 @@ export default function ProductosPage() {
           <>
             {loading ? (
               <div className="flex items-center justify-center py-20">
-                <Loader2 className="size-8 text-yellow-400 animate-spin" />
+                <Loader2 className="size-8 text-sky-500 animate-spin" />
               </div>
             ) : filteredProductos.length === 0 ? (
               <div className="text-center py-20">
-                <div className="bg-white/5 backdrop-blur-md rounded-2xl p-12 border border-white/10">
-                  <Package className="size-16 text-slate-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-semibold text-slate-300">
+                <div className="bg-white rounded-2xl p-12 border border-sky-200 shadow-md">
+                  <Package className="size-16 text-gray-300 mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-gray-800">
                     {searchTerm || filterCategoria
                       ? "No se encontraron productos"
                       : "No hay productos registrados"}
                   </h3>
-                  <p className="text-slate-500 mt-2">
+                  <p className="text-gray-600 mt-2">
                     {searchTerm || filterCategoria
                       ? "Intenta con otros términos de búsqueda"
                       : "Comienza agregando tu primer producto"}

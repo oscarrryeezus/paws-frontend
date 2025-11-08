@@ -54,11 +54,12 @@ export default function ForgotPasswordForm({ onSuccess, onBack }) {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full max-w-md"
+      className="w-full max-w-xl"
     >
       <Card className="bg-white/5 backdrop-blur-md border-white/10 shadow-2xl">
         <CardHeader className="space-y-4 pb-6">
           <button
+            type="button"
             onClick={onBack}
             className="flex items-center text-slate-400 hover:text-yellow-400 transition-colors duration-200 mb-2 self-start"
           >
