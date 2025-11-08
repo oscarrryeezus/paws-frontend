@@ -15,6 +15,18 @@ export function getToken() {
 }
 
 export async function verificarEmail(email, codigo) {
-    const res = await api.post('/login/otp', {email, codigo});
-    return res.data;
+  const res = await api.post('/login/otp', { email, codigo });
+  return res.data;
+}
+
+export async function logout() {
+  try {
+    await api.post("/logout"); 
+  } catch (error) {
+    console.error("Error al cerrar sesión:", error);
+  } finally {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    window.location.href = "/";
+  }
 }

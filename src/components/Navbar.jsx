@@ -3,14 +3,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Package, LogOut, Home } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { logout } from "@/lib/auth";
 
 export default function Navbar() {
   const pathname = usePathname();
 
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    window.location.href = "/";
+    logout();
   };
 
   // No mostrar navbar en la página de login o en la raíz
