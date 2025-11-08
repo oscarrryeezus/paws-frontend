@@ -7,6 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Eye, EyeOff, Mail, Lock, Loader2 } from "lucide-react";
+import api from "@/lib/api";
 
 export default function LoginForm({ onSuccess, onForgotPassword }) {
   const [correo, setCorreo] = useState("");
@@ -21,32 +22,27 @@ export default function LoginForm({ onSuccess, onForgotPassword }) {
     setErrorMsg("");
 
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          str_correo: correo,
-          str_pass: password,
-        }),
+      const data = await api.post("/login", {
+        str_correo: correo,
+        str_pass: password,
       });
-
-      const data = await response.json();
 
       if (data.error) {
         setErrorMsg(data.error);
         return;
       }
 
-      console.log(data)
+      console.log(data);
 
       if (data.ok) {
         onSuccess(correo);
       } else {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("user", JSON.stringify(data.user));
         window.location.href = "/dashboard";
       }
     } catch (error) {
-      setErrorMsg("Error al conectar con el servidor");
+      setErrorMsg(error.error || "Error al conectar con el servidor");
     } finally {
       setLoading(false);
     }
