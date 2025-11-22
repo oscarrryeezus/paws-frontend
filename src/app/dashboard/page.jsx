@@ -3,12 +3,20 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Package, AlertTriangle, TrendingUp, Users } from "lucide-react";
+import { Package, AlertTriangle, TrendingUp, Users, Loader2 } from "lucide-react";
 import Link from "next/link";
+import { dashboardService } from "@/lib/dashboard";
 
 export default function DashboardPage() {
   const router = useRouter();
   const [user, setUser] = useState(null);
+  const [stats, setStats] = useState({
+    totalProductos: null,
+    stockBajo: null,
+    movimientos: null,
+    proveedores: null,
+  });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Verificar autenticación
@@ -23,7 +31,35 @@ export default function DashboardPage() {
     if (userData) {
       setUser(JSON.parse(userData));
     }
+
+    // Cargar estadísticas del dashboard
+    cargarEstadisticas();
   }, [router]);
+
+  const cargarEstadisticas = async () => {
+    try {
+      setLoading(true);
+
+      // Llamadas en paralelo para mejor rendimiento
+      const [productos, stockBajo, movimientos, proveedores] = await Promise.all([
+        dashboardService.obtenerTotalProductos().catch(() => ({ data: { total: 0 } })),
+        dashboardService.obtenerStockBajo().catch(() => ({ data: { total_productos_bajo_stock: 0 } })),
+        dashboardService.obtenerMovimientosHoy().catch(() => ({ data: { entradas: { total_movimientos: 0 }, salidas: { total_movimientos: 0 } } })),
+        dashboardService.obtenerTotalProveedores().catch(() => ({ data: { total: 0 } })),
+      ]);
+
+      setStats({
+        totalProductos: productos.data?.total || 0,
+        stockBajo: stockBajo.data?.total_productos_bajo_stock || 0,
+        movimientos: (movimientos.data?.entradas?.total_movimientos || 0) + (movimientos.data?.salidas?.total_movimientos || 0),
+        proveedores: proveedores.data?.total || 0,
+      });
+    } catch (error) {
+      console.error("Error al cargar estadísticas:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-sky-100">
@@ -50,8 +86,14 @@ export default function DashboardPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-gray-900">-</div>
-              <p className="text-gray-600 text-xs mt-1">Productos activos</p>
+              {loading ? (
+                <Loader2 className="size-8 text-sky-500 animate-spin" />
+              ) : (
+                <>
+                  <div className="text-3xl font-bold text-gray-900">{stats.totalProductos}</div>
+                  <p className="text-gray-600 text-xs mt-1">Productos activos</p>
+                </>
+              )}
             </CardContent>
           </Card>
 
@@ -65,8 +107,14 @@ export default function DashboardPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-orange-500">-</div>
-              <p className="text-gray-600 text-xs mt-1">Requieren atención</p>
+              {loading ? (
+                <Loader2 className="size-8 text-orange-500 animate-spin" />
+              ) : (
+                <>
+                  <div className="text-3xl font-bold text-orange-500">{stats.stockBajo}</div>
+                  <p className="text-gray-600 text-xs mt-1">Requieren atención</p>
+                </>
+              )}
             </CardContent>
           </Card>
 
@@ -80,8 +128,14 @@ export default function DashboardPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-emerald-500">-</div>
-              <p className="text-gray-600 text-xs mt-1">Entradas/Salidas</p>
+              {loading ? (
+                <Loader2 className="size-8 text-emerald-500 animate-spin" />
+              ) : (
+                <>
+                  <div className="text-3xl font-bold text-emerald-500">{stats.movimientos}</div>
+                  <p className="text-gray-600 text-xs mt-1">Entradas/Salidas</p>
+                </>
+              )}
             </CardContent>
           </Card>
 
@@ -95,8 +149,14 @@ export default function DashboardPage() {
               </div>
             </CardHeader>
             <CardContent>
-              <div className="text-3xl font-bold text-purple-500">-</div>
-              <p className="text-gray-600 text-xs mt-1">Proveedores activos</p>
+              {loading ? (
+                <Loader2 className="size-8 text-purple-500 animate-spin" />
+              ) : (
+                <>
+                  <div className="text-3xl font-bold text-purple-500">{stats.proveedores}</div>
+                  <p className="text-gray-600 text-xs mt-1">Proveedores activos</p>
+                </>
+              )}
             </CardContent>
           </Card>
         </div>

@@ -7,7 +7,8 @@ import ConfirmDialog from "@/components/productos/ConfirmDialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Alert } from "@/components/ui/alert";
-import { Plus, Search, Package, AlertCircle, Loader2 } from "lucide-react";
+import { Plus, Search, Package, AlertCircle, Loader2, Download } from "lucide-react";
+import { dashboardService } from "@/lib/dashboard";
 
 export default function ProductosPage() {
   const [productos, setProductos] = useState([]);
@@ -23,6 +24,7 @@ export default function ProductosPage() {
   
   const [searchTerm, setSearchTerm] = useState("");
   const [filterCategoria, setFilterCategoria] = useState("");
+  const [downloadingExcel, setDownloadingExcel] = useState(false);
 
   // Cargar productos
   useEffect(() => {
@@ -137,6 +139,21 @@ export default function ProductosPage() {
   // Obtener categorías únicas
   const categorias = [...new Set(productos.map((p) => p.str_categoria).filter(Boolean))];
 
+  const handleDescargarExcel = async () => {
+    try {
+      setDownloadingExcel(true);
+      setError("");
+      await dashboardService.descargarReporteExcel();
+      setSuccess("Reporte descargado exitosamente");
+      setTimeout(() => setSuccess(""), 3000);
+    } catch (err) {
+      setError("Error al descargar el reporte Excel");
+      console.error("Error descargando Excel:", err);
+    } finally {
+      setDownloadingExcel(false);
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-sky-100 p-6 relative">
       {/* Fondos decorativos */}
@@ -159,14 +176,33 @@ export default function ProductosPage() {
               {productos.length} productos registrados
             </p>
           </div>
-          <Button
-            onClick={handleNuevoProducto}
-            className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
-            disabled={showForm}
-          >
-            <Plus className="size-5" />
-            Nuevo Producto
-          </Button>
+          <div className="flex gap-3">
+            <Button
+              onClick={handleDescargarExcel}
+              className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              disabled={downloadingExcel}
+            >
+              {downloadingExcel ? (
+                <>
+                  <Loader2 className="size-5 animate-spin" />
+                  Descargando...
+                </>
+              ) : (
+                <>
+                  <Download className="size-5" />
+                  Descargar Excel
+                </>
+              )}
+            </Button>
+            <Button
+              onClick={handleNuevoProducto}
+              className="bg-gradient-to-r from-emerald-500 to-green-600 hover:from-emerald-600 hover:to-green-700 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-200"
+              disabled={showForm}
+            >
+              <Plus className="size-5" />
+              Nuevo Producto
+            </Button>
+          </div>
         </div>
 
         {/* Mensajes */}
